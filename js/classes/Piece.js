@@ -205,20 +205,6 @@ class Piece {
 			y: Math.round(this.position.y / cellSize) * cellSize,
 		};
 
-		let piecesDownOne = pieces.filter((p) => p.topSide() === this.bottomSide());
-		piecesDownOne.forEach((piece) => {
-			if (
-				(this.leftSide() > piece.leftSide() &&
-					this.leftSide() < piece.rightSide()) ||
-				(this.rightSide() < piece.rightSide() &&
-					this.rightSide() > piece.leftSide())
-			) {
-			} else {
-				this.hit = false;
-				this.isTouchingBottom = false;
-			}
-		});
-
 		mouse.isDragging = false;
 		this.isDragging = false;
 	}

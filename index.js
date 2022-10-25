@@ -34,7 +34,7 @@ class Square {
 		this.color = color;
 		this.idx = idx;
 		this.image = new Image();
-		this.image.src = `../../images/${color}.png`;
+		this.image.src = `images/${color}.png`;
 		this.image.onload = () => {
 			this.isLoaded = true;
 		};
@@ -44,22 +44,24 @@ class Square {
 		// Draw shadow in inital position if piece is dragging
 		c.save();
 		c.globalAlpha = 0.5;
-		c.drawImage(
-			this.image,
-			(isParentDragging ? parentPosition.x : parentInitialPosition.x) +
-				this.idx * cellSize,
-			isParentDragging ? parentPosition.y : parentInitialPosition.y
-		);
+		if (this.isLoaded)
+			c.drawImage(
+				this.image,
+				(isParentDragging ? parentPosition.x : parentInitialPosition.x) +
+					this.idx * cellSize,
+				isParentDragging ? parentPosition.y : parentInitialPosition.y
+			);
 		c.restore();
 
 		// Draw shape in updated position
 		c.save();
-		c.drawImage(
-			this.image,
-			(isParentDragging ? parentPosition.x : parentInitialPosition.x) +
-				this.idx * cellSize,
-			isParentDragging ? parentPosition.y : parentInitialPosition.y
-		);
+		if (this.isLoaded)
+			c.drawImage(
+				this.image,
+				(isParentDragging ? parentPosition.x : parentInitialPosition.x) +
+					this.idx * cellSize,
+				isParentDragging ? parentPosition.y : parentInitialPosition.y
+			);
 		c.restore();
 	}
 }
