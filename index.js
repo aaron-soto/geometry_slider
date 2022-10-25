@@ -1,7 +1,7 @@
 const canvas = document.querySelector('canvas');
 const c = canvas.getContext('2d');
 
-const cellSize = 80;
+const cellSize = 50;
 const rows = 10;
 const cols = 8;
 let isPieceClicked = false;
@@ -49,7 +49,9 @@ class Square {
 				this.image,
 				(isParentDragging ? parentPosition.x : parentInitialPosition.x) +
 					this.idx * cellSize,
-				isParentDragging ? parentPosition.y : parentInitialPosition.y
+				isParentDragging ? parentPosition.y : parentInitialPosition.y,
+				cellSize,
+				cellSize
 			);
 		c.restore();
 
@@ -60,7 +62,9 @@ class Square {
 				this.image,
 				(isParentDragging ? parentPosition.x : parentInitialPosition.x) +
 					this.idx * cellSize,
-				isParentDragging ? parentPosition.y : parentInitialPosition.y
+				isParentDragging ? parentPosition.y : parentInitialPosition.y,
+				cellSize,
+				cellSize
 			);
 		c.restore();
 	}
@@ -70,11 +74,11 @@ const gameBoard = new GameBoard();
 
 let pieces = [];
 
-const piece1 = new Piece(240, 640, 2, 'blue');
-const piece2 = new Piece(0, 640, 2, 'green');
-const piece3 = new Piece(480, 640, 2, 'red');
+const piece1 = new Piece(0, 300, 2, 'blue');
+const piece2 = new Piece(150, 300, 3, 'green');
+// const piece3 = new Piece(480, 640, 2, 'red');
 
-pieces.push(piece1, piece2, piece3);
+pieces.push(piece1, piece2);
 
 function animate() {
 	requestAnimationFrame(animate);

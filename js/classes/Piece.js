@@ -149,22 +149,20 @@ class Piece {
 			} else if (xTemp + this.width * cellSize > canvas.width) {
 				this.position.x = canvas.width - this.width * cellSize;
 			} else {
-				this.position.x = xTemp;
-			}
+				let bounds = this.getClosest(this.initialPosition.x);
 
-			let bounds = this.getClosest(this.initialPosition.x);
-
-			if (xTemp < bounds[0]) {
-				this.position.x = bounds[0];
-				this.isTouchingSide = true;
-			} else if (xTemp + this.width * cellSize > bounds[1]) {
-				this.position.x = bounds[1] - this.width * cellSize;
-				this.isTouchingSide = true;
-			} else {
-				if (this.isTouchingSide && this.isDragging) {
-					this.isTouchingSide = false;
+				if (xTemp < bounds[0]) {
+					this.position.x = bounds[0];
+					this.isTouchingSide = true;
+				} else if (xTemp + this.width * cellSize > bounds[1]) {
+					this.position.x = bounds[1] - this.width * cellSize;
+					this.isTouchingSide = true;
 				} else {
-					this.position.x = xTemp;
+					if (this.isTouchingSide && this.isDragging) {
+						this.isTouchingSide = false;
+					} else {
+						this.position.x = xTemp;
+					}
 				}
 			}
 		}
